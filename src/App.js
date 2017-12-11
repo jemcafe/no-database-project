@@ -8,28 +8,36 @@ class App extends Component {
   constructor () {
     super();
     this.state ={
-      list: [],
+      name: '',
     };
   }
 
   componentDidMount() {   //componentDidMount is fired after all children components have been "mounted"
-    axios.get(`https://api.sketchfab.com/v3/models`).then( results => {   // axios gets the models data from the api
-      console.log(results.data.results);
+    axios.get(`http://localhost:3030/api/pokemon`).then( response => {   // axios gets the models data from the api
+      console.log(response);
       // filters through the array of data
-      let newList = results.data.results.filter( (e, i) => {
-          this.state.list.push( e.name );
-        });
-      this.setState({
-        list: this.state.list
-      });
-      console.log( 'The data: ', this.state.list );
+      // let newList = results.data.results.filter( (e, i) => {
+      //   this.state.list.push( e.name );
+      // });
+      // this.setState({
+      //   list: this.state.list
+      // });
+      // console.log( 'The data: ', this.state.list );
     })
   }
+
+  // addPokemon () {
+  //   let postObj = {
+  //     name: this.state.name
+  //   };
+
+  //   axios.post( '', postObj );
+  // }
 
   render() {
     return (
       <div className="App">
-        <h3 className="title">Search for Model</h3>
+        <h3 className="title">Pokemon Search</h3>
         
         <div className="main">
           <Search items={ this.state.list } />
