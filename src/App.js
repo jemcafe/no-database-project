@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import Search from './components/Search'
+import ManagePokemon from './components/ManagePokemon'
 import Team from './components/Team'
 import Add from './components/Add'
 
@@ -10,12 +10,14 @@ class App extends Component {
   constructor () {
     super();
     this.state ={
-      listOfPokemon: []
+      listOfPokemon: [],
+      name: '',
     };
   }
 
   componentDidMount() {   //componentDidMount is fired after all children components have been "mounted"
-    axios.get(`http://localhost:3030/api/pokemon`).then( response => {   // axios gets the models data from the api
+    // axios gets the models data from the api
+    axios.get(`http://localhost:3030/api/pokemon`).then( response => {
       // console.log(response.data);
       let listOfNames = response.data.map( pokemon => {
         pokemon.name = pokemon.name.split('');
@@ -36,9 +38,7 @@ class App extends Component {
 
         <div className="main">
           {/* <Add /> */}
-          
-          <Search items={ this.state.listOfPokemon } />
-          
+          <ManagePokemon items={ this.state.listOfPokemon } />
         </div>
 
       </div>
