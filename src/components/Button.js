@@ -1,11 +1,7 @@
 import React from 'react'
 
 function Button (props) {
-    return (
-        <div>
-            <button className="button" onClick={(e) => props.handle()}>{ props.buttonName }</button>
-        </div>
-    );
+    return <button className="button" onClick={(e) => props.handle()}>{ props.buttonName }</button>
 }
 
 export default Button;

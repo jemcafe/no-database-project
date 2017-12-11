@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import ShowList from './ShowList.js'
+import List from './List.js'
 import Button from './Button.js'
 
 class Add extends Component {

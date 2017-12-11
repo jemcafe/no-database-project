@@ -2,46 +2,44 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import Search from './components/Search.js'
+import Search from './components/Search'
+import Add from './components/Add'
 
 class App extends Component {
   constructor () {
     super();
     this.state ={
+      listOfPokemon: [],
       name: '',
     };
   }
 
   componentDidMount() {   //componentDidMount is fired after all children components have been "mounted"
     axios.get(`http://localhost:3030/api/pokemon`).then( response => {   // axios gets the models data from the api
-      console.log(response);
-      // filters through the array of data
-      // let newList = results.data.results.filter( (e, i) => {
-      //   this.state.list.push( e.name );
-      // });
-      // this.setState({
-      //   list: this.state.list
-      // });
-      // console.log( 'The data: ', this.state.list );
+      console.log(response.data);
+      let listOfNames = response.data.map( pokemon => {
+        pokemon.name = pokemon.name.split('');
+        pokemon.name[0] = pokemon.name[0].toUpperCase();
+        pokemon.name = pokemon.name.join('');
+        return pokemon.name
+      });
+      this.setState({
+        listOfPokemon: listOfNames
+      });
+      console.log( 'The list of names: ', this.state.listOfPokemon );
     })
   }
-
-  // addPokemon () {
-  //   let postObj = {
-  //     name: this.state.name
-  //   };
-
-  //   axios.post( '', postObj );
-  // }
 
   render() {
     return (
       <div className="App">
-        <h3 className="title">Pokemon Search</h3>
-        
+
         <div className="main">
-          <Search items={ this.state.list } />
+          <Add />
+          
+          <Search items={ this.state.listOfPokemon } />
         </div>
+
       </div>
     );
   }

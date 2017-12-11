@@ -1,12 +1,10 @@
 import React from 'react';
-import Button from './Button'
 
-function ShowList (props) {
+function List (props) {
     let itemsList = props.items.map( (item, i) => {
         return (
             <p key={i}>
                 { item }
-                <Button buttonName="add"/>
             </p>
         )
     });
@@ -20,4 +18,4 @@ function ShowList (props) {
     )
 }
 
-export default ShowList;
+export default List;

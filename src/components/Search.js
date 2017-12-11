@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import ShowList from './ShowList.js'
-import Button from './Button.js'
+import axios from 'axios';
+import SearchList from './SearchList'
+import List from './List'
+import Button from './Button'
 
 class Search extends Component {
   constructor () {
     super();
     this.state = {
       list: [],
+      team: [],
       searchInput: ''
     };
     this.filterList = this.filterList.bind(this);
+    this.addPokemon = this.addPokemon.bind(this);
   }
 
   handleChange ( val ) {
@@ -29,12 +33,23 @@ class Search extends Component {
     }
   }
 
+  addPokemon ( val ) {
+    let body = { name: val }; 
+    axios.post('http://localhost:3030/api/newpokemon', body).then( response => {
+      console.log( response );
+    }).catch( console.log() );
+  }
+
   render () {
     return (
       <div>
+        <h3 className="title">Pokemon Search</h3>
         <input className="search-input" onChange={ (e) => this.handleChange(e.target.value) } />
-        <Button buttonName="search" handle={ this.filterList }/>
-        <ShowList items={ this.state.list } />
+        <Button buttonName="search" handle={ this.filterList } />
+        <SearchList items={ this.state.list } add={ this.addPokemon } />
+
+        {/* <h3 className="title">Your Team</h3>
+        <List items={ this.state.team } /> */}
       </div>
     )
   }

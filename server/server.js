@@ -14,7 +14,11 @@ app.use( cors() );  //middleware
 
 app.get('/api/pokemon', cntrls.getPokemon );
 
-// app.post('/api/v1/pokedex/1/', cntrls.postPokemon );
+app.post('/api/newpokemon', cntrls.postPokemon );
+
+// app.put('api/changeinfo', cntrls.postPokemon );
+
+// app.delete('api/removepokemon', cntrls.postPokemon );
 
 
 
