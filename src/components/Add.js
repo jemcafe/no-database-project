@@ -3,6 +3,9 @@ import axios from 'axios';
 import List from './List.js'
 import Button from './Button.js'
 
+// This component is not used
+// For testing purposes only
+
 class Add extends Component {
     constructor(){
         super();
@@ -15,20 +18,6 @@ class Add extends Component {
     handleChange ( val ) {
       this.setState({ name: val });
     }
-
-    // insert post function
-    // post ( ) {
-    //     let { title, subTitle, image, text } = this.state;
-    //     let body = {
-    //         title: title,
-    //         subTitle: subTitle,
-    //         image: image,
-    //         text: text
-    //     };
-    //     axios.post('/api/blogs', body).then( response => {
-    //         this.props.history.push(`/blog/${response.data.id}`)
-    //     }).catch( console.log() );
-    // }
     
     addPokemon () {
       let body = { name: this.state.name }; 

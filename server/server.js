@@ -14,6 +14,8 @@ app.use( cors() );  //middleware
 
 app.get('/api/pokemon', cntrls.getPokemon );
 
+app.get('/api/pokemonteam', cntrls.getPokemonTeam );
+
 app.post('/api/newpokemon', cntrls.postPokemon );
 
 // app.put('api/changeinfo', cntrls.postPokemon );

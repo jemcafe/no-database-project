@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import SearchList from './SearchList'
-import List from './List'
-import Button from './Button'
+import SearchList from './SearchList';
+import Team from './Team'
+// import List from './List';
+import Button from './Button';
 
 class Search extends Component {
   constructor () {
@@ -34,9 +35,11 @@ class Search extends Component {
   }
 
   addPokemon ( val ) {
+    // The name of the pokemon is added to the local server's array and the team list
     let body = { name: val }; 
     axios.post('http://localhost:3030/api/newpokemon', body).then( response => {
       console.log( response );
+      this.setState({ team: response.data });
     }).catch( console.log() );
   }
 
@@ -48,8 +51,7 @@ class Search extends Component {
         <Button buttonName="search" handle={ this.filterList } />
         <SearchList items={ this.state.list } add={ this.addPokemon } />
 
-        {/* <h3 className="title">Your Team</h3>
-        <List items={ this.state.team } /> */}
+        <Team team={ this.state.team }/>
       </div>
     )
   }

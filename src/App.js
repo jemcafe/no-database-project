@@ -3,20 +3,20 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Search from './components/Search'
+import Team from './components/Team'
 import Add from './components/Add'
 
 class App extends Component {
   constructor () {
     super();
     this.state ={
-      listOfPokemon: [],
-      name: '',
+      listOfPokemon: []
     };
   }
 
   componentDidMount() {   //componentDidMount is fired after all children components have been "mounted"
     axios.get(`http://localhost:3030/api/pokemon`).then( response => {   // axios gets the models data from the api
-      console.log(response.data);
+      // console.log(response.data);
       let listOfNames = response.data.map( pokemon => {
         pokemon.name = pokemon.name.split('');
         pokemon.name[0] = pokemon.name[0].toUpperCase();
@@ -35,9 +35,10 @@ class App extends Component {
       <div className="App">
 
         <div className="main">
-          <Add />
+          {/* <Add /> */}
           
           <Search items={ this.state.listOfPokemon } />
+          
         </div>
 
       </div>
