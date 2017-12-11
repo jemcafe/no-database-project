@@ -15,6 +15,7 @@ class Search extends Component {
     };
     this.filterList = this.filterList.bind(this);
     this.addPokemon = this.addPokemon.bind(this);
+    this.removePokemon = this.removePokemon.bind(this);
   }
 
   handleChange ( val ) {
@@ -43,6 +44,14 @@ class Search extends Component {
     }).catch( console.log() );
   }
 
+  removePokemon ( index ) {
+    console.log('remove');
+    axios.delete(`http://localhost:3030/api/removepokemon/${ index }`).then( (response) => {
+      console.log( response );
+      this.setState({ team: response.data });
+    });
+  }
+
   render () {
     return (
       <div>
@@ -51,7 +60,7 @@ class Search extends Component {
         <Button buttonName="search" handle={ this.filterList } />
         <SearchList items={ this.state.list } add={ this.addPokemon } />
 
-        <Team team={ this.state.team }/>
+        <Team team={ this.state.team } remove={ this.removePokemon }/>
       </div>
     )
   }

@@ -11,29 +11,36 @@ class Team extends Component {
     };
   }
 
-  changeName () {
-    // let body = { name: val }; 
-    // axios.edit('http://localhost:3030/api/newpokemon', body).then( response => {
-      
-    // }).catch( console.log() );
-    console.log('change');
+  handleChange ( val ) {
+    this.setState({ searchInput: val });
   }
 
-  removePokemon () {
-    // axios.delete().then( () => {
+  changeName ( val ) {
+    console.log('change');
+//     let body = { name: val };
+//     let id = ;
+//     axios.put(`api/changename/${  }`, body).then( (response) => {
+//       console.log( response );
+//       this.setState({ team: response.data });
+//     });
+  }
 
-    // });
+  removePokemon ( index ) {
     console.log('remove');
+    axios.delete(`http://localhost:3030/api/removepokemon/${ index }`).then( (response) => {
+      console.log( response );
+      this.setState({ team: response.data });
+    });
   }
 
   render () {
-    // mapped through the list of names in team
+    // maps through the list of names in team
     let itemsList = this.props.team.map( (name, i) => {
       return (
         <p key={i}>
           { name }
-          <button onClick={ (e) => this.changeName(name) }>Edit Name</button>
-          <button onClick={ (e) => this.removePokemon(name) }>Remove</button>
+          <button onClick={ (e) => this.changeName( this.state.nameInput ) }>Edit Name</button>
+          <button onClick={ (e) => this.props.remove( i ) }>Remove</button>
         </p>
       )
     });

@@ -27,11 +27,11 @@ module.exports = {
     //   })
     // },
 
-    // deletePokemon (req, res) {
-    //   if (  ) {
-    //     pokemonArr.splice(  );
-    //   }
-    // }
+    deletePokemon (req, res) {
+      pokemonArr.splice(req.params.index, 1 );
+      res.json( pokemonArr );
+      console.log( pokemonArr );
+    }
 
     // test (req, res) {
     //     res.status(200).send('http://i63.tinypic.com/2j9y8p.png');
