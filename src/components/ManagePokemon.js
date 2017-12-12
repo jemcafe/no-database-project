@@ -10,28 +10,28 @@ class ManagePokemon extends Component {
     this.state = {
       list: [],
       team: [],
-      searchInput: ''
+      userInput: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.filterList = this.filterList.bind(this);
     this.addPokemon = this.addPokemon.bind(this);
-    this.changeName = this.changeName.bind(this);
+    this.editName = this.editName.bind(this);
     this.removePokemon = this.removePokemon.bind(this);
   }
 
   handleChange ( val ) {
-    this.setState({ searchInput: val });
+    this.setState({ userInput: val });
   }
 
   filterList () {
-    let { searchInput } = this.state;
+    let { userInput } = this.state;
     let newList;
     // If userInput is empty, nothing in the list is shown. When there is userInput, the filtered list is shown.
-    if ( searchInput ===  '' || searchInput ===  ' ' ) {
+    if ( userInput ===  '' || userInput ===  ' ' ) {
       this.setState({ list: [] });
     } else {
       // Looks for pokemon that begins with the user's input
-      newList = this.props.items.filter( (e) => (e.toLowerCase().slice(0, this.state.searchInput.length) === this.state.searchInput ) );
+      newList = this.props.items.filter( (e) => (e.toLowerCase().slice(0, this.state.userInput.length) === this.state.userInput ) );
       this.setState({ list: newList });
     }
   }
@@ -43,32 +43,32 @@ class ManagePokemon extends Component {
       console.log( response );
       this.setState({ team: response.data });
     }).catch( console.log() );
+    console.log('added');
   }
-
-  changeName ( val ) {
-    console.log('change');
-//     let body = { name: val };
-//     let id = ;
-//     axios.put(`api/changename/${  }`, body).then( (response) => {
-//       console.log( response );
-//       this.setState({ team: response.data });
-//     });
+  
+  editName ( val, index ) {
+    let body = { name: val };
+    axios.put(`http://localhost:3030/api/changename/${ index }`, body).then( (response) => {
+      console.log( response );
+      this.setState({ team: response.data });
+    });
+  console.log(val, index);
   }
   
   removePokemon ( index ) {
-    console.log('remove');
     axios.delete(`http://localhost:3030/api/removepokemon/${ index }`).then( (response) => {
       console.log( response );
       this.setState({ team: response.data });
     });
+    console.log('removed');
   }
 
   render () {
     return (
       <div>
         
-        <Search items={ this.state.list } input={ this.handleChange } filter={ this.filterList } add={ this.addPokemon } />
-        <Team team={ this.state.team } remove={ this.removePokemon } edit={ this.changeName } />
+        <Search items={ this.state.list } handleInput={ this.handleChange } filter={ this.filterList } add={ this.addPokemon } />
+        <Team team={ this.state.team } handleInput={ this.handleChange } inputVal={ this.state.userInput } remove={ this.removePokemon } edit={ this.editName } />
 
       </div>
     )

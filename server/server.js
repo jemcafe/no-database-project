@@ -18,7 +18,7 @@ app.get('/api/pokemonteam', cntrls.getPokemonTeam );
 
 app.post('/api/newpokemon', cntrls.postPokemon );
 
-// app.put('api/changename', cntrls.postPokemon );
+app.put('/api/changename/:index', cntrls.editPokemon );
 
 app.delete('/api/removepokemon/:index', cntrls.deletePokemon );
 

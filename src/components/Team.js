@@ -1,28 +1,19 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import Pokemon from './Pokemon'
 
 class Team extends Component {
-  constructor (props) {
+  constructor () {
     super();
     this.state = {
-      nameInput: ''
+      editMode: false
     };
-  }
-
-  handleChange ( val ) {
-    this.setState({ searchInput: val });
   }
 
   render () {
     // maps through the list of names in team
-    let itemsList = this.props.team.map( (name, i) => {
-      return (
-        <p key={i}>
-          { name }
-          <button onClick={ (e) => this.props.edit( this.state.nameInput ) }>Edit Name</button>
-          <button onClick={ (e) => this.props.remove( i ) }>Remove</button>
-        </p>
-      )
+    // Each component is given the name of a pokemon
+    let itemsList = this.props.team.map( (nam, i) => {
+        return <Pokemon key={ i } name={ nam } handleInput={ this.props.handleInput } inputVal={ this.props.inputVal } remove={ this.props.remove } edit={ this.props.edit } index={ i } />
     });
 
     return (

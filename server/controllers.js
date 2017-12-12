@@ -19,13 +19,11 @@ module.exports = {
       console.log( pokemonArr )
     },
 
-    // editPokemon (req, res) {
-    //   pokmonArr = pokemonArr.map( (e, i) => {
-    //     if ( req.body.name === pokemon ) {
-    //       pokemonArr.splice( i, 1, body.request.name);
-    //     }
-    //   })
-    // },
+    editPokemon (req, res) {
+      pokemonArr[req.params.index] = req.body.name;
+      res.json( pokemonArr );
+      console.log( pokemonArr );
+    },
 
     deletePokemon (req, res) {
       pokemonArr.splice(req.params.index, 1 );

@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import ManagePokemon from './components/ManagePokemon'
-import Team from './components/Team'
-import Add from './components/Add'
+// import Add from './components/Add'
 
 class App extends Component {
   constructor () {
@@ -37,7 +36,6 @@ class App extends Component {
       <div className="App">
 
         <div className="main">
-          {/* <Add /> */}
           <ManagePokemon items={ this.state.listOfPokemon } />
         </div>
 
