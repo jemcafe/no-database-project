@@ -2,9 +2,37 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: rgb(209, 243, 253);
+  background-color: white;
 }
 
-.button {
-  /* border-radius: 35%; */
+.panel {
+  width: 50em;
+  margin: 0 auto;
+}
+
+/* --------------------- */
+
+.main {
+  background-color: rgb(241, 238, 213);
+}
+
+.managepokemon {
+  display: flex;
+  justify-content: space-between;
+  background-color: blue;
+}
+
+.pokemon-search {
+  flex: 1;
+  background-color: lightblue;
+}
+
+.pokemon-team {
+  flex: 1;
+  background-color: rgb(187, 241, 187);
+}
+
+.sprite-pokeball {
+  width: 1.4em;
+  height: 1.4em;
 }

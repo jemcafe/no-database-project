@@ -17,7 +17,7 @@ class App extends Component {
   componentDidMount() {   //componentDidMount is fired after all children components have been "mounted"
     // axios gets the models data from the api
     axios.get(`http://localhost:3030/api/pokemon`).then( response => {
-      // console.log(response.data);
+      console.log(response.data);
       let listOfNames = response.data.map( pokemon => {
         pokemon.name = pokemon.name.split('');
         pokemon.name[0] = pokemon.name[0].toUpperCase();
@@ -35,8 +35,8 @@ class App extends Component {
     return (
       <div className="App">
 
-        <div className="main">
-          <ManagePokemon items={ this.state.listOfPokemon } />
+        <div className="main panel">
+          <ManagePokemon names={ this.state.listOfPokemon } />
         </div>
 
       </div>

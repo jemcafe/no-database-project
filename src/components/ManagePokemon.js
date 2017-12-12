@@ -27,11 +27,11 @@ class ManagePokemon extends Component {
     let { userInput } = this.state;
     let newList;
     // If userInput is empty, nothing in the list is shown. When there is userInput, the filtered list is shown.
+    // Else Looks for pokemon that begins with the user's input
     if ( userInput ===  '' || userInput ===  ' ' ) {
       this.setState({ list: [] });
     } else {
-      // Looks for pokemon that begins with the user's input
-      newList = this.props.items.filter( (e) => (e.toLowerCase().slice(0, this.state.userInput.length) === this.state.userInput ) );
+      newList = this.props.names.filter( (e) => (e.toLowerCase().slice(0, userInput.length) === userInput ) );
       this.setState({ list: newList });
     }
   }
@@ -65,10 +65,18 @@ class ManagePokemon extends Component {
 
   render () {
     return (
-      <div>
+      <div className="managepokemon">
         
-        <Search items={ this.state.list } handleInput={ this.handleChange } filter={ this.filterList } add={ this.addPokemon } />
-        <Team team={ this.state.team } handleInput={ this.handleChange } inputVal={ this.state.userInput } remove={ this.removePokemon } edit={ this.editName } />
+        <Search items={ this.state.list } 
+                handleInput={ this.handleChange } 
+                filter={ this.filterList } 
+                add={ this.addPokemon } />
+
+        <Team team={ this.state.team } 
+              handleInput={ this.handleChange } 
+              inputVal={ this.state.userInput } 
+              remove={ this.removePokemon } 
+              edit={ this.editName } />
 
       </div>
     )

@@ -12,7 +12,7 @@ function Search (props) {
     });
 
     return (
-        <div>
+        <div className="pokemon-search">
             <h3 className="title">Pokemon Search</h3>
             <input onChange={ (e) => props.handleInput(e.target.value) } />
             <Button buttonName="search" handle={ props.filter } />
